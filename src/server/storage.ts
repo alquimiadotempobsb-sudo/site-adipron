@@ -84,13 +84,12 @@ const defaultData: AppDatabase = {
       id: 'dl-5',
       name: 'Fireboard 2.0 Servidor de Banco de Dados',
       category: 'fireboard_20',
-      description: 'Mecanismo e utilitário do banco de dados relacional Fireboard 2.0 hospedado no Google Drive para download direto.',
+      description: 'Mecanismo e utilitário do banco de dados relacional Fireboard 2.0 (Firebird) para download direto e imediato.',
       type: 'EXE',
-      size: 'Google Drive',
+      size: '4.2 MB',
       version: '2.0.4',
       date: '2026-09-24',
-      filename: 'Fireboard_2.0_Setup.exe',
-      downloadUrl: 'https://drive.google.com/uc?export=download&id=13fUKcsmAwpk6TV6KNSnpajQ6oPC8IxAO',
+      filename: 'Firebird2-0.exe',
       downloadsCount: 168
     }
   ],
@@ -214,13 +213,18 @@ let memoryDb: AppDatabase = (() => {
           return item;
         });
 
-        // Ensure fireboard items are linked to the user-specified Google Drive direct download URL
+        // Ensure fireboard items are direct downloads
         merged.downloads = merged.downloads.map(item => {
           if (item.category === 'fireboard_20' || item.id === 'dl-5') {
             return {
               ...item,
-              downloadUrl: 'https://drive.google.com/uc?export=download&id=13fUKcsmAwpk6TV6KNSnpajQ6oPC8IxAO',
-              size: item.size || 'Google Drive'
+              name: 'Fireboard 2.0 Servidor de Banco de Dados',
+              category: 'fireboard_20',
+              description: 'Mecanismo e utilitário do banco de dados relacional Fireboard 2.0 (Firebird) para download direto e imediato.',
+              type: 'EXE',
+              filename: 'Firebird2-0.exe',
+              size: '4.2 MB',
+              downloadUrl: undefined
             };
           }
           return item;

@@ -557,11 +557,19 @@ export const Downloads: React.FC<DownloadsProps> = ({
                 {activeTab === 'fireboard_20' && (
                   <button
                     type="button"
-                    onClick={() => handleDirectDownload('https://drive.google.com/uc?export=download&id=13fUKcsmAwpk6TV6KNSnpajQ6oPC8IxAO', 'Fireboard_2.0_Setup.exe')}
+                    onClick={() => {
+                      const fireboardItem = items.find(i => i.category === 'fireboard_20') || items.find(i => i.id === 'dl-5');
+                      if (fireboardItem) {
+                        const url = fireboardItem.downloadUrl || api.getDownloadUrl(fireboardItem.id);
+                        handleDirectDownload(url, fireboardItem.filename);
+                      } else {
+                        handleDirectDownload(api.getDownloadUrl('dl-5'), 'Firebird2-0.exe');
+                      }
+                    }}
                     className="inline-flex items-center justify-center gap-2 px-4 py-2 text-xs font-semibold text-slate-900 bg-emerald-400 hover:bg-emerald-500 rounded-xl transition-all shadow-xs shrink-0 cursor-pointer"
                   >
                     <Download className="w-4 h-4 text-slate-900" />
-                    <span>Baixar do Google Drive</span>
+                    <span>Baixar Fireboard Direto</span>
                   </button>
                 )}
                 <button

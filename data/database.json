@@ -52,13 +52,12 @@
       "id": "dl-5",
       "name": "Fireboard 2.0 Servidor de Banco de Dados",
       "category": "fireboard_20",
-      "description": "Mecanismo e utilitário do banco de dados relacional Fireboard 2.0 hospedado no Google Drive para download direto.",
+      "description": "Mecanismo e utilitário do banco de dados relacional Fireboard 2.0 (Firebird) para download direto e imediato.",
       "type": "EXE",
-      "size": "Google Drive",
+      "size": "4.2 MB",
       "version": "2.0.4",
       "date": "2026-09-24",
-      "filename": "Fireboard_2.0_Setup.exe",
-      "downloadUrl": "https://drive.google.com/uc?export=download&id=13fUKcsmAwpk6TV6KNSnpajQ6oPC8IxAO",
+      "filename": "Firebird2-0.exe",
       "downloadsCount": 168
     }
   ],
