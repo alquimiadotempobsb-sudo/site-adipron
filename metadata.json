@@ -1,0 +1,6 @@
+{
+  "name": "Adipron Informática",
+  "description": "Soluções em tecnologia, software de automação comercial e suporte tecnológico para empresas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

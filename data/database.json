@@ -1,0 +1,145 @@
+{
+  "downloads": [
+    {
+      "id": "dl-1790263947042",
+      "name": "schemas",
+      "category": "schemas",
+      "description": "schemas",
+      "type": "ZIP",
+      "size": "270.2 KB",
+      "version": "2.0",
+      "date": "2026-09-24",
+      "filename": "schemas.zip",
+      "downloadsCount": 0
+    },
+    {
+      "id": "dl-1790263805789",
+      "name": "DllAdipron",
+      "category": "dll_adipron",
+      "description": "dll",
+      "type": "ZIP",
+      "size": "115.8 MB",
+      "version": "3.0",
+      "date": "2026-09-24",
+      "filename": "DllAdipron.zip",
+      "downloadsCount": 0
+    },
+    {
+      "id": "dl-1790263701918",
+      "name": "PDVAdipron",
+      "category": "pdv_adipron",
+      "description": "pdvadipron",
+      "type": "EXE",
+      "size": "26 MB",
+      "version": "3.0",
+      "date": "2026-09-24",
+      "filename": "PDVAdipron.exe",
+      "downloadsCount": 0
+    },
+    {
+      "id": "dl-1790263653767",
+      "name": "prj estoque",
+      "category": "adipron",
+      "description": "a",
+      "type": "EXE",
+      "size": "52.2 MB",
+      "version": "2",
+      "date": "2026-09-24",
+      "filename": "prj_estoque.exe",
+      "downloadsCount": 0
+    },
+    {
+      "id": "dl-5",
+      "name": "Fireboard 2.0 Servidor de Banco de Dados",
+      "category": "fireboard_20",
+      "description": "Mecanismo e utilitário do banco de dados relacional Fireboard 2.0 hospedado no Google Drive para download direto.",
+      "type": "EXE",
+      "size": "Google Drive",
+      "version": "2.0.4",
+      "date": "2026-09-24",
+      "filename": "Fireboard_2.0_Setup.exe",
+      "downloadUrl": "https://drive.google.com/uc?export=download&id=13fUKcsmAwpk6TV6KNSnpajQ6oPC8IxAO",
+      "downloadsCount": 168
+    }
+  ],
+  "partners": [],
+  "plans": [
+    {
+      "id": "plan-basic",
+      "name": "Plano Básico",
+      "description": "Estruturado para pequenos estabelecimentos comerciais que necessitam de emissão ágil e frente de caixa.",
+      "price": "Consulte valores",
+      "period": "Comercialização externa",
+      "benefits": [
+        "Módulo de Frente de Caixa (PDV)",
+        "Emissão de comprovantes e documentos fiscais",
+        "Controle básico de estoque",
+        "Suporte técnico especializado"
+      ],
+      "contactButtonText": "Consultar com a Representante",
+      "highlighted": false
+    },
+    {
+      "id": "plan-pro",
+      "name": "Plano Completo",
+      "description": "Solução integrada para empresas que demandam controle operacional aprofundado e retaguarda completa.",
+      "price": "Consulte valores",
+      "period": "Comercialização externa",
+      "benefits": [
+        "Todos os recursos do Plano Básico",
+        "Módulo financeiro e contas a pagar/receber",
+        "Relatórios gerenciais e fluxo operacional",
+        "Múltiplos terminais integrados",
+        "Suporte prioritário e atualizações"
+      ],
+      "contactButtonText": "Consultar com a Representante",
+      "highlighted": true
+    }
+  ],
+  "supportLinks": [
+    {
+      "id": "sup-1",
+      "title": "Ferramenta de Suporte Remoto",
+      "description": "Utilize esta ferramenta quando solicitado pelo suporte técnico da Adipron Informática para atendimento assistido.",
+      "url": "https://anydesk.com/pt/downloads",
+      "category": "remoto",
+      "badge": "Suporte Assistido",
+      "buttonText": "Acessar Ferramenta",
+      "isExternal": true
+    },
+    {
+      "id": "sup-2",
+      "title": "Manual de Instalação e Boas Práticas",
+      "description": "Orientações técnicas para configuração dos equipamentos e preparação de ambiente operacional.",
+      "url": "#downloads",
+      "category": "manual",
+      "badge": "Documentação",
+      "buttonText": "Ver Documentos",
+      "isExternal": false
+    },
+    {
+      "id": "sup-3",
+      "title": "Configurador de Impressoras e Periféricos",
+      "description": "Utilitário de alinhamento e teste de comunicação para impressoras térmicas e leitores de código.",
+      "url": "#downloads",
+      "category": "ferramenta",
+      "badge": "Utilitário",
+      "buttonText": "Ver Utilitários",
+      "isExternal": false
+    }
+  ],
+  "messages": [],
+  "content": {
+    "heroTitle": "ADIPRON INFORMÁTICA",
+    "heroTagline": "Tecnologia para simplificar a gestão do seu negócio.",
+    "heroDescription": "Soluções em software de automação comercial, tecnologia integrada e suporte especializado para empresas que buscam eficiência e controle.",
+    "aboutTitle": "Quem somos",
+    "aboutText1": "A Adipron Informática é uma empresa voltada à prestação de serviços tecnológicos e fornecimento de suporte especializado para software de automação comercial e gestão empresarial.",
+    "aboutText2": "Nosso compromisso é entregar soluções estáveis e atendimento dedicado, auxiliando estabelecimentos comerciais na organização operacional, conformidade fiscal e otimização do dia a dia.",
+    "phone": "61984418195",
+    "phoneFormatted": "(61) 98441-8195",
+    "whatsappInternational": "+55 61 98441-8195",
+    "email": "adipron@gmail.com"
+  },
+  "adminPin": "151621"
+}
