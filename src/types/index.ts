@@ -43,6 +43,11 @@ export interface SupportLink {
   badge?: string;
   buttonText: string;
   isExternal: boolean;
+  filename?: string;
+  size?: string;
+  version?: string;
+  fileType?: string;
+  directDownload?: boolean;
 }
 
 export interface ContactMessage {
@@ -60,9 +65,9 @@ export interface InstitutionalContent {
   heroTitle: string;
   heroTagline: string;
   heroDescription: string;
-  aboutTitle: string;
-  aboutText1: string;
-  aboutText2: string;
+  aboutTitle?: string;
+  aboutText1?: string;
+  aboutText2?: string;
   phone: string;
   phoneFormatted: string;
   whatsappInternational: string;

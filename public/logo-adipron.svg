@@ -1,0 +1,25 @@
+<svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <!-- Whirlpool concentric spiral rings -->
+  <g id="logo-mark" transform="translate(200, 160)">
+    <!-- Fine outer guide circle -->
+    <circle cx="0" cy="0" r="118" fill="none" stroke="#00833e" stroke-width="2" opacity="0.3" stroke-dasharray="12 4" />
+    
+    <!-- Outer crescent band -->
+    <path d="M 0 -115 C 64 -115 115 -64 115 0 C 115 64 64 115 0 115 C -45 115 -84 90 -103 52 C -78 80 -41 98 0 98 C 54 98 98 54 98 0 C 98 -54 54 -98 0 -98 C -36 -98 -68 -78 -85 -48 C -68 -88 -26 -115 0 -115 Z" fill="#007e3a"/>
+    
+    <!-- Intermediate sweep band -->
+    <path d="M 0 -90 C 50 -90 90 -50 90 0 C 90 50 50 90 0 90 C -38 90 -70 66 -82 32 C -65 56 -35 72 0 72 C 40 72 72 40 72 0 C 72 -40 40 -72 0 -72 C -28 -72 -52 -56 -64 -32 C -50 -67 -18 -90 0 -90 Z" fill="#009345"/>
+    
+    <!-- Inner dynamic vortex swirl -->
+    <path d="M 0 -64 C 35 -64 64 -35 64 0 C 64 35 35 64 0 64 C -28 64 -51 46 -58 20 C -48 38 -25 50 0 50 C 28 50 50 28 50 0 C 50 -28 28 -50 0 -50 C -18 -50 -35 -38 -43 -20 C -32 -47 -8 -64 0 -64 Z" fill="#15a956"/>
+    
+    <!-- Center focal vortex curl -->
+    <path d="M 0 -38 C 21 -38 38 -21 38 0 C 38 21 21 38 0 38 C -18 38 -32 24 -35 7 C -28 19 -14 26 0 26 C 14 26 26 14 26 0 C 26 -14 14 -26 0 -26 C -9 -26 -17 -20 -22 -11 C -15 -27 -3 -38 0 -38 Z" fill="#20bc62"/>
+  </g>
+
+  <!-- Typography: Adipron -->
+  <text x="200" y="325" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="44" font-weight="700" fill="#00833e" text-anchor="middle" letter-spacing="3">Adipron</text>
+  
+  <!-- Typography: informática -->
+  <text x="200" y="358" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="22" font-weight="500" fill="#111827" text-anchor="middle" letter-spacing="4">informática</text>
+</svg>

@@ -374,13 +374,13 @@ export const Downloads: React.FC<DownloadsProps> = ({
         <div className="max-w-3xl mb-10">
           <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-2">
             <Lock className="w-4 h-4" />
-            <span>Repositório Restrito para Clientes</span>
+            <span>Repositório Oficial Adipron</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            Área de Downloads do Cliente
+            Área de Downloads Adipron
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600">
-            Acesso seguro para clientes e parceiros aos instaladores, módulos do Adipron, PDV, bibliotecas DLL, schemas e banco de dados.
+            Acesso seguro aos instaladores, módulos oficiais Adipron, PDV, bibliotecas DLL, schemas fiscais e utilitários de banco de dados.
           </p>
         </div>
 
@@ -442,7 +442,7 @@ export const Downloads: React.FC<DownloadsProps> = ({
                 ) : (
                   <>
                     <Unlock className="w-4 h-4" />
-                    <span>Acessar Downloads</span>
+                    <span>Acessar Downloads Adipron</span>
                   </>
                 )}
               </button>

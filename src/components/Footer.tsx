@@ -1,6 +1,7 @@
 import React from 'react';
-import { Phone, Mail, Shield, ArrowUp } from 'lucide-react';
+import { Shield, ArrowUp, PhoneCall, Mail } from 'lucide-react';
 import type { InstitutionalContent } from '../types/index.ts';
+import { LogoAdipron } from './LogoAdipron.tsx';
 
 interface FooterProps {
   content?: InstitutionalContent | null;
@@ -26,16 +27,15 @@ export const Footer: React.FC<FooterProps> = ({
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
           
-          {/* Brand & Purpose */}
+          {/* Brand & Purpose with Logo */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-base">
-                A
-              </div>
-              <span className="text-xl font-bold tracking-tight text-white">
-                ADIPRON INFORMÁTICA
-              </span>
-            </div>
+            <button
+              onClick={() => onNavigate('inicio')}
+              className="text-left group"
+              aria-label="Adipron Informática"
+            >
+              <LogoAdipron size={40} showText={true} lightText={true} />
+            </button>
             <p className="text-sm text-slate-400 max-w-sm leading-relaxed">
               Tecnologia, software de automação comercial e suporte técnico especializado para a organização e crescimento da sua empresa.
             </p>
@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links (solucoes removed) */}
           <div className="space-y-3">
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-200">
               Navegação
@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigate('inicio')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Início
                 </button>
@@ -63,17 +63,8 @@ export const Footer: React.FC<FooterProps> = ({
               <li>
                 <button
                   type="button"
-                  onClick={() => onNavigate('solucoes')}
-                  className="hover:text-white transition-colors"
-                >
-                  Soluções
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
                   onClick={() => onNavigate('planos')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Planos
                 </button>
@@ -82,16 +73,16 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigate('downloads')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Downloads
+                  Downloads Adipron
                 </button>
               </li>
               <li>
                 <button
                   type="button"
                   onClick={() => onNavigate('suporte')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Suporte
                 </button>
@@ -100,7 +91,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <button
                   type="button"
                   onClick={() => onNavigate('contato')}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Contato
                 </button>
@@ -108,63 +99,76 @@ export const Footer: React.FC<FooterProps> = ({
             </ul>
           </div>
 
-          {/* Contact Details */}
-          <div className="space-y-3 lg:col-span-2">
+          {/* Direct Support & Operating Hours */}
+          <div className="space-y-3">
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-200">
-              Canais de Contato
+              Horário do Suporte
             </div>
-            <ul className="space-y-3 text-sm">
-              <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                <div>
-                  <a
-                    href="https://wa.me/5561984418195"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-white transition-colors font-medium text-slate-200"
-                  >
-                    {phoneDisplay}
-                  </a>
-                  <span className="block text-xs text-slate-400">Atendimento WhatsApp & Voz</span>
-                </div>
+            <div className="space-y-2 text-xs text-slate-300">
+              <div>
+                <span className="block font-bold text-white">Segunda a Sexta:</span>
+                <span>08:00 às 18:00</span>
+              </div>
+              <div>
+                <span className="block font-bold text-white">Sábado:</span>
+                <span>08:00 às 12:00</span>
+              </div>
+              <div className="text-slate-400 text-[11px] pt-1">
+                Sem funcionamento aos domingos e feriados.
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Details */}
+          <div className="space-y-3">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-200">
+              Atendimento
+            </div>
+            <ul className="space-y-2.5 text-xs text-slate-300">
+              <li className="flex items-center gap-2">
+                <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+                <a
+                  href={`tel:${phoneDisplay.replace(/\D/g, '')}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {phoneDisplay}
+                </a>
               </li>
-              <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-                <div>
-                  <a
-                    href={`mailto:${emailDisplay}`}
-                    className="hover:text-white transition-colors font-medium text-slate-200"
-                  >
-                    {emailDisplay}
-                  </a>
-                  <span className="block text-xs text-slate-400">Canal oficial para solicitações</span>
-                </div>
+              <li className="flex items-center gap-2">
+                <Mail className="w-3.5 h-3.5 text-emerald-400" />
+                <a
+                  href={`mailto:${emailDisplay}`}
+                  className="hover:text-white transition-colors"
+                >
+                  {emailDisplay}
+                </a>
+              </li>
+              <li className="text-slate-400 pt-1">
+                Brasília - DF
               </li>
             </ul>
           </div>
 
         </div>
 
-        {/* Bottom bar */}
+        {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © Adipron Informática — Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Adipron Informática. Todos os direitos reservados.
           </div>
 
           <div className="flex items-center gap-6">
             <button
               type="button"
               onClick={onOpenAdmin}
-              className="text-slate-400 hover:text-slate-200 transition-colors flex items-center gap-1.5 focus-visible:ring-1 focus-visible:ring-sky-500 rounded px-1"
+              className="text-slate-300 hover:text-slate-100 transition-colors cursor-pointer"
             >
-              <span>Painel Administrativo</span>
+              Acesso Administrativo
             </button>
-
             <button
               type="button"
               onClick={scrollToTop}
-              className="hover:text-white transition-colors flex items-center gap-1"
-              aria-label="Voltar ao topo da página"
+              className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
             >
               <span>Voltar ao topo</span>
               <ArrowUp className="w-3.5 h-3.5" />

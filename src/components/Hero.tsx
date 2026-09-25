@@ -1,16 +1,24 @@
 import React from 'react';
-import { ArrowRight, MessageSquare, Monitor, CheckCircle2, ShieldCheck, Download, Users, FolderDown, Headphones, Globe } from 'lucide-react';
+import {
+  Download,
+  Headphones,
+  MessageSquare,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
+  Monitor
+} from 'lucide-react';
 import type { InstitutionalContent } from '../types/index.ts';
 
 interface HeroProps {
-  content: InstitutionalContent | null;
+  content?: InstitutionalContent | null;
   onNavigate: (sectionId: string) => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
   return (
-    <section className="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-24 bg-white border-b border-emerald-100">
-      {/* Subtle light-green organic ambient aura on pure white canvas */}
+    <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/40 via-white to-white py-16 lg:py-24 border-b border-emerald-100/60">
+      {/* Soft light-green ambient highlights */}
       <div 
         className="absolute -top-40 -right-40 w-96 h-96 bg-emerald-100/50 rounded-full blur-3xl pointer-events-none"
         aria-hidden="true"
@@ -23,13 +31,13 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           
-          {/* Left Column: Client-Focused Presentation */}
+          {/* Left Column: Presentation */}
           <div className="lg:col-span-7 space-y-6 text-left">
             
             {/* Elegant light-green badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold tracking-wide">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              <span>Portal de Atendimento & Software para Clientes</span>
+              <span>Portal de Atendimento & Software de Automação Comercial</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.12]">
@@ -41,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
 
             <p className="text-lg text-slate-600 max-w-2xl leading-relaxed">
               {content?.heroDescription || 
-                'Ambiente exclusivo para clientes: acesse com segurança os instaladores, pacotes de atualização, manuais, suporte técnico e canais diretos de atendimento da Adipron Informática.'
+                'Ambiente oficial da Adipron Informática: acesse com segurança os instaladores, pacotes de atualização, suporte técnico e canais diretos de atendimento.'
               }
             </p>
 
@@ -50,17 +58,17 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
               <button
                 type="button"
                 onClick={() => onNavigate('downloads')}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:text-base font-semibold text-slate-900 bg-emerald-400 hover:bg-emerald-500 rounded-xl shadow-xs hover:shadow transition-all group focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm sm:text-base font-semibold text-slate-900 bg-emerald-400 hover:bg-emerald-500 rounded-xl shadow-xs hover:shadow transition-all group focus-visible:ring-2 focus-visible:ring-emerald-500 cursor-pointer"
               >
                 <Download className="w-4 h-4 text-slate-900" />
-                <span>Acessar Downloads do Cliente</span>
+                <span>Acessar Downloads Adipron</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
 
               <button
                 type="button"
                 onClick={() => onNavigate('suporte')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-emerald-500"
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-emerald-500 cursor-pointer"
               >
                 <Headphones className="w-4 h-4 text-emerald-700" />
                 <span>Central de Suporte</span>
@@ -68,15 +76,14 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
 
               <button
                 type="button"
-                onClick={() => onNavigate('contato')}
-                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-emerald-500"
+                onClick={() => onNavigate('planos')}
+                className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl transition-all focus-visible:ring-2 focus-visible:ring-emerald-500 cursor-pointer"
               >
-                <MessageSquare className="w-4 h-4 text-emerald-700" />
-                <span>Fale Conosco</span>
+                <span>Conhecer Plano</span>
               </button>
             </div>
 
-            {/* Quick Benefits Pills */}
+            {/* Reassurance points */}
             <div className="pt-6 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-sm text-slate-700">
               <div className="flex items-center gap-2.5 p-2 rounded-lg bg-emerald-50/50 border border-emerald-100/60">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -94,7 +101,7 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
 
           </div>
 
-          {/* Right Column: Portal do Cliente Card */}
+          {/* Right Column: Downloads Adipron Hub Card */}
           <div className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
@@ -109,7 +116,7 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
                     </div>
                     <div>
                       <div className="text-sm font-bold text-white leading-tight">
-                        Portal do Cliente
+                        Downloads Adipron
                       </div>
                       <div className="text-[11px] text-slate-300 font-mono">
                         Adipron Informática
@@ -140,17 +147,20 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
                     </span>
                   </div>
 
-                  {/* Customer Portal Options */}
-                  <div className="space-y-2.5">
-                    
+                  <p className="text-xs text-slate-600 leading-relaxed">
+                    Baixe executáveis de apoio, arquivos de atualização do sistema e utilize as ferramentas de suporte remoto com agilidade.
+                  </p>
+
+                  {/* Fast Action Options */}
+                  <div className="space-y-2.5 pt-1">
                     <button
                       type="button"
                       onClick={() => onNavigate('downloads')}
-                      className="w-full text-left p-3.5 bg-slate-50 hover:bg-emerald-50/60 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group"
+                      className="w-full text-left p-3.5 bg-slate-50 hover:bg-emerald-50/60 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-emerald-100/70 text-emerald-800 flex items-center justify-center shrink-0">
-                          <FolderDown className="w-5 h-5" />
+                          <Download className="w-5 h-5" />
                         </div>
                         <div>
                           <div className="text-sm font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
@@ -167,7 +177,7 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
                     <button
                       type="button"
                       onClick={() => onNavigate('suporte')}
-                      className="w-full text-left p-3.5 bg-slate-50 hover:bg-emerald-50/60 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group"
+                      className="w-full text-left p-3.5 bg-slate-50 hover:bg-emerald-50/60 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-emerald-100/70 text-emerald-800 flex items-center justify-center shrink-0">
@@ -178,7 +188,7 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
                             Suporte Técnico Remoto
                           </div>
                           <div className="text-xs text-slate-500">
-                            Atendimento via AnyDesk, TeamViewer e WhatsApp
+                            Atendimento via AnyDesk e TeamViewer
                           </div>
                         </div>
                       </div>
@@ -187,32 +197,31 @@ export const Hero: React.FC<HeroProps> = ({ content, onNavigate }) => {
 
                     <button
                       type="button"
-                      onClick={() => onNavigate('solucoes')}
-                      className="w-full text-left p-3.5 bg-slate-50 hover:bg-emerald-50/60 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group"
+                      onClick={() => onNavigate('planos')}
+                      className="w-full text-left p-3.5 bg-slate-50 hover:bg-emerald-50/60 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center justify-between group cursor-pointer"
                     >
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-lg bg-emerald-100/70 text-emerald-800 flex items-center justify-center shrink-0">
-                          <Globe className="w-5 h-5" />
+                          <ShieldCheck className="w-5 h-5" />
                         </div>
                         <div>
                           <div className="text-sm font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">
-                            Soluções & Manuais
+                            Plano Completo por Loja
                           </div>
                           <div className="text-xs text-slate-500">
-                            Orientações sobre automação comercial e retaguarda
+                            R$ 600 instalação / R$ 305 mensalidade com suporte
                           </div>
                         </div>
                       </div>
                       <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-700 group-hover:translate-x-0.5 transition-all shrink-0" />
                     </button>
-
                   </div>
 
                   {/* Trust Footer */}
                   <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                     <span className="flex items-center gap-1.5 font-medium text-emerald-900">
                       <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                      Acesso Exclusivo para Clientes
+                      Acesso Direto para Clientes
                     </span>
                     <span className="font-semibold text-slate-600">Brasília / DF</span>
                   </div>

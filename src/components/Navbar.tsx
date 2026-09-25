@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, Lock, Unlock, PhoneCall } from 'lucide-react';
+import { LogoAdipron } from './LogoAdipron.tsx';
 
 interface NavbarProps {
   currentSection: string;
@@ -15,13 +16,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Navigation links
   const navLinks = [
     { id: 'inicio', label: 'Início' },
-    { id: 'solucoes', label: 'Soluções' },
     { id: 'planos', label: 'Planos' },
     {
       id: 'downloads',
-      label: 'Downloads',
+      label: 'Downloads Adipron',
       hasLock: true
     },
     { id: 'suporte', label: 'Suporte' },
@@ -38,25 +39,16 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
-          {/* Zone 1: Brand Wordmark (Single Text Element) */}
+          {/* Official Brand Logo */}
           <button
             onClick={() => handleLinkClick('inicio')}
-            className="flex items-center gap-2.5 text-left focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1 group"
+            className="flex items-center text-left focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1 group transition-transform hover:scale-[1.01]"
+            aria-label="Adipron Informática - Início"
           >
-            <div className="w-9 h-9 rounded-lg bg-emerald-600 flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:bg-emerald-700 transition-colors">
-              A
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold tracking-tight text-slate-900 group-hover:text-emerald-700 transition-colors">
-                ADIPRON INFORMÁTICA
-              </span>
-              <span className="text-[11px] font-medium tracking-wide text-emerald-800 uppercase">
-                Automação Comercial & Suporte
-              </span>
-            </div>
+            <LogoAdipron size={42} showText={true} />
           </button>
 
-          {/* Zone 2: Navigation Links (Clean Text with subtle indicators) */}
+          {/* Navigation Links */}
           <nav className="hidden md:flex items-center gap-7" aria-label="Navegação principal">
             {navLinks.map(link => {
               const isActive = currentSection === link.id;
@@ -91,10 +83,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Zone 3: Quick Action */}
+          {/* Quick Action */}
           <div className="hidden lg:flex items-center gap-3">
             <a
-              href="https://wa.me/5561984418195?text=Ol%C3%A1!%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Adipron%20Inform%C3%A1tica."
+              href="https://wa.me/5561984418195?text=Ol%C3%A1!%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20o%20sistema%20da%20Adipron%20Inform%C3%A1tica."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition-colors shadow-xs whitespace-nowrap"
@@ -157,10 +149,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           
           <div className="pt-4 border-t border-slate-100 mt-2">
             <a
-              href="https://wa.me/5561984418195?text=Ol%C3%A1!%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20as%20solu%C3%A7%C3%B5es%20da%20Adipron%20Inform%C3%A1tica."
+              href="https://wa.me/5561984418195?text=Ol%C3%A1!%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20o%20sistema%20da%20Adipron%20Inform%C3%A1tica."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white bg-sky-700 hover:bg-sky-800 text-sm font-semibold transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white bg-emerald-700 hover:bg-emerald-800 text-sm font-semibold transition-colors"
             >
               <PhoneCall className="w-4 h-4" />
               <span>WhatsApp: (61) 98441-8195</span>

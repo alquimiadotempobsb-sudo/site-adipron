@@ -378,6 +378,30 @@ app.get('/api/support', (_req: Request, res: Response) => {
   res.json(db.getSupportLinks());
 });
 
+// Download support tool directly (public, free and immediate for support clients)
+app.get('/api/support/download/:filename', (req: Request, res: Response) => {
+  const { filename } = req.params;
+  const safeFilename = filename.replace(/[^a-zA-Z0-9_.-]/g, '');
+  const filePath = db.getFilePath(safeFilename);
+
+  if (!fs.existsSync(filePath)) {
+    // If not found locally, redirect to official vendors
+    if (safeFilename.toLowerCase().includes('anydesk')) {
+      res.redirect('https://download.anydesk.com/AnyDesk.exe');
+      return;
+    } else if (safeFilename.toLowerCase().includes('teamviewer')) {
+      res.redirect('https://download.teamviewer.com/download/TeamViewerQS.exe');
+      return;
+    }
+    res.status(404).json({ success: false, message: 'Arquivo de suporte não encontrado.' });
+    return;
+  }
+
+  res.setHeader('Content-Disposition', `attachment; filename="${safeFilename}"`);
+  res.setHeader('Content-Type', 'application/octet-stream');
+  res.sendFile(filePath);
+});
+
 app.post('/api/support', requireAdminAuth, (req: Request, res: Response) => {
   const { title, description, url, category, badge, buttonText, isExternal } = req.body;
   if (!title || !description || !url) {

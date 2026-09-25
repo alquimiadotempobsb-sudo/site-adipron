@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import {
   Mail,
   Phone,
-  MessageSquare,
-  Send,
-  CheckCircle,
-  AlertCircle,
-  RefreshCw,
   Clock,
-  MapPin
+  MapPin,
+  Send,
+  MessageSquare,
+  CheckCircle2,
+  AlertCircle,
+  ShieldCheck,
+  Building2
 } from 'lucide-react';
-import { api } from '../services/api.ts';
 import type { InstitutionalContent } from '../types/index.ts';
+import { api } from '../services/api.ts';
 
 interface ContactProps {
   content?: InstitutionalContent | null;
@@ -23,7 +24,7 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
   const [phone, setPhone] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
-  const [honeypot, setHoneypot] = useState(''); // Anti-bot honeypot
+  const [honeypot, setHoneypot] = useState(''); // Anti-spam
 
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -31,16 +32,13 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
 
   const phoneDisplay = content?.phoneFormatted || '(61) 98441-8195';
   const emailDisplay = content?.email || 'adipron@gmail.com';
-  const whatsappUrl = `https://wa.me/5561984418195?text=${encodeURIComponent(
-    'Olá! Gostaria de obter informações sobre as soluções da Adipron Informática.'
-  )}`;
+  const whatsappUrl = `https://wa.me/5561984418195?text=Ol%C3%A1!%20Gostaria%20de%20obter%20informa%C3%A7%C3%B5es%20sobre%20o%20sistema%20da%20Adipron%20Inform%C3%A1tica.`;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
     setSuccessMessage('');
 
-    // Validations
     if (!name.trim()) {
       setErrorMessage('Por favor, informe seu nome completo.');
       return;
@@ -91,14 +89,14 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
-          <span className="text-xs font-semibold uppercase tracking-wider text-sky-700 block mb-2">
+          <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full inline-block mb-2">
             Atendimento Direto
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">
-            Entre em contato
+            Entre em contato com a Adipron
           </h2>
           <p className="mt-3 text-base sm:text-lg text-slate-600">
-            Fale com nossa equipe para dúvidas técnicas, esclarecimentos sobre automação ou atendimento comercial.
+            Fale com nossa equipe para contratação do sistema, parametrizações e suporte técnico especializado.
           </p>
         </div>
 
@@ -110,20 +108,20 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
             {/* WhatsApp Highlight Box */}
             <div className="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-7 shadow-xs">
               <div className="text-xs font-semibold uppercase tracking-wider text-emerald-800 mb-1">
-                Fale conosco
+                Fale conosco via WhatsApp
               </div>
               <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight my-2">
                 {phoneDisplay}
               </div>
               <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
-                Nosso canal direto para mensagens rápidas, suporte técnico e informações gerais sobre a Adipron Informática.
+                Nosso canal direto para mensagens rápidas, suporte técnico e informações comerciais sobre a contratação do sistema.
               </p>
 
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl text-sm font-semibold text-slate-900 bg-emerald-400 hover:bg-emerald-500 transition-colors shadow-xs"
+                className="w-full inline-flex items-center justify-center gap-2.5 py-3.5 px-5 rounded-xl text-sm font-bold text-slate-900 bg-emerald-400 hover:bg-emerald-500 transition-colors shadow-xs"
               >
                 <MessageSquare className="w-4 h-4 text-slate-900" />
                 <span>Conversar pelo WhatsApp</span>
@@ -170,19 +168,23 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
                 </div>
               </div>
 
+              {/* Exact Support Hours as Requested */}
               <div className="flex items-start gap-3.5 pt-4 border-t border-slate-100">
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Horário de Atendimento
+                    Horário de Funcionamento do Suporte
                   </div>
-                  <div className="text-sm font-semibold text-slate-800">
-                    Segunda a Sexta: horário comercial
+                  <div className="text-sm font-bold text-slate-900 mt-0.5">
+                    Segunda a Sexta: 08:00 às 18:00
                   </div>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    Plantão para clientes com contrato de suporte.
+                  <div className="text-sm font-bold text-slate-900 mt-0.5">
+                    Sábado: 08:00 às 12:00
+                  </div>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Sem funcionamento aos domingos e feriados.
                   </p>
                 </div>
               </div>
@@ -193,13 +195,13 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    Atuação
+                    Localização & Atendimento
                   </div>
                   <div className="text-sm font-semibold text-slate-800">
-                    Distrito Federal e Região Integrada
+                    Brasília / DF
                   </div>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Atendimento presencial e suporte remoto em todo o Brasil.
+                    Atendimento e suporte remoto via AnyDesk e TeamViewer nos horários estabelecidos.
                   </p>
                 </div>
               </div>
@@ -209,164 +211,152 @@ export const Contact: React.FC<ContactProps> = ({ content }) => {
           </div>
 
           {/* Right Column: Contact Form */}
-          <div className="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-8 shadow-xs">
-            
-            <h3 className="text-xl font-bold text-slate-900 mb-1">
-              Envie uma mensagem
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-600 mb-6">
-              Preencha o formulário abaixo. Sua solicitação será encaminhada diretamente para <span className="font-semibold text-slate-800">{emailDisplay}</span>.
-            </p>
-
-            {successMessage && (
-              <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-start gap-3 text-emerald-800 text-sm">
-                <CheckCircle className="w-5 h-5 shrink-0 text-emerald-600 mt-0.5" />
-                <div>
-                  <strong className="block font-semibold">Sucesso!</strong>
-                  <span>{successMessage}</span>
-                </div>
-              </div>
-            )}
-
-            {errorMessage && (
-              <div className="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-3 text-rose-800 text-sm">
-                <AlertCircle className="w-5 h-5 shrink-0 text-rose-600 mt-0.5" />
-                <div>
-                  <strong className="block font-semibold">Atenção</strong>
-                  <span>{errorMessage}</span>
-                </div>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="lg:col-span-7">
+            <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-xs">
               
-              {/* Anti-spam Honeypot field (hidden from real users) */}
-              <input
-                type="text"
-                name="website_check"
-                value={honeypot}
-                onChange={e => setHoneypot(e.target.value)}
-                className="hidden"
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="contact-name"
-                    className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
-                  >
-                    Nome Completo *
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    required
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="Seu nome ou da sua empresa"
-                    className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600 transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="contact-email"
-                    className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
-                  >
-                    E-mail de Retorno *
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    placeholder="seuemail@empresa.com.br"
-                    className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600 transition-colors"
-                  />
-                </div>
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-slate-900">
+                  Envie uma mensagem direta
+                </h3>
+                <p className="text-sm text-slate-600 mt-1">
+                  Preencha o formulário abaixo para tirar dúvidas comerciais ou solicitar informações sobre o sistema.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="contact-phone"
-                    className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
-                  >
-                    Telefone / WhatsApp *
-                  </label>
-                  <input
-                    id="contact-phone"
-                    type="tel"
-                    required
-                    value={phone}
-                    onChange={e => setPhone(e.target.value)}
-                    placeholder="(00) 00000-0000"
-                    className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600 transition-colors"
-                  />
+              {successMessage && (
+                <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3 text-emerald-900 text-sm">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="block font-semibold">Sucesso!</strong>
+                    <span>{successMessage}</span>
+                  </div>
                 </div>
+              )}
 
-                <div>
-                  <label
-                    htmlFor="contact-subject"
-                    className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
-                  >
-                    Assunto
-                  </label>
-                  <input
-                    id="contact-subject"
-                    type="text"
-                    value={subject}
-                    onChange={e => setSubject(e.target.value)}
-                    placeholder="Ex: Suporte, Dúvidas de Automação..."
-                    className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600 transition-colors"
-                  />
+              {errorMessage && (
+                <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 flex items-start gap-3 text-rose-900 text-sm">
+                  <AlertCircle className="w-5 h-5 text-rose-600 shrink-0 mt-0.5" />
+                  <div>
+                    <strong className="block font-semibold">Atenção:</strong>
+                    <span>{errorMessage}</span>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1"
-                >
-                  Mensagem *
-                </label>
-                <textarea
-                  id="contact-message"
-                  required
-                  rows={4}
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-                  placeholder="Descreva detalhadamente como podemos auxiliar o seu negócio..."
-                  className="w-full px-4 py-2.5 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-sky-600 transition-colors"
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Honeypot field for spam prevention */}
+                <input
+                  type="text"
+                  name="website_check"
+                  value={honeypot}
+                  onChange={e => setHoneypot(e.target.value)}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
-              </div>
 
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-slate-900 bg-emerald-400 hover:bg-emerald-500 disabled:opacity-70 transition-all shadow-xs focus-visible:ring-2 focus-visible:ring-emerald-500"
-                >
-                  {loading ? (
-                    <>
-                      <RefreshCw className="w-4 h-4 animate-spin" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="name" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Nome Completo *
+                    </label>
+                    <input
+                      id="name"
+                      type="text"
+                      required
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      placeholder="Ex: Carlos Oliveira"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Telefone / WhatsApp *
+                    </label>
+                    <input
+                      id="phone"
+                      type="tel"
+                      required
+                      value={phone}
+                      onChange={e => setPhone(e.target.value)}
+                      placeholder="Ex: (61) 98888-7777"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="email" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Endereço de E-mail *
+                    </label>
+                    <input
+                      id="email"
+                      type="email"
+                      required
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      placeholder="seu.email@empresa.com.br"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="subject" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                      Assunto
+                    </label>
+                    <input
+                      id="subject"
+                      type="text"
+                      value={subject}
+                      onChange={e => setSubject(e.target.value)}
+                      placeholder="Ex: Contratação do Sistema"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
+                    Mensagem *
+                  </label>
+                  <textarea
+                    id="message"
+                    required
+                    rows={5}
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
+                    placeholder="Descreva seu estabelecimento, quantos caixas ou terminais possui e como podemos ajudar..."
+                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-hidden focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors resize-y"
+                  />
+                </div>
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl text-sm font-bold text-slate-900 bg-emerald-400 hover:bg-emerald-500 transition-colors shadow-xs disabled:opacity-50 cursor-pointer"
+                  >
+                    {loading ? (
                       <span>Enviando mensagem...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 text-slate-900" />
-                      <span>Enviar mensagem</span>
-                    </>
-                  )}
-                </button>
-              </div>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 text-slate-900" />
+                        <span>Enviar Mensagem</span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
-            </form>
+                <div className="flex items-center justify-center gap-2 text-xs text-slate-500 pt-2">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span>Seus dados são transmitidos de forma segura e não compartilhados.</span>
+                </div>
+              </form>
 
+            </div>
           </div>
 
         </div>

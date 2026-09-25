@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://adipron.com.br/sitemap.xml
+Sitemap: https://www.adipron.com.br/sitemap.xml

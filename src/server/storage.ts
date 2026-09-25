@@ -96,67 +96,54 @@ const defaultData: AppDatabase = {
   partners: [], // Empty initially: triggers "Em breve apresentaremos nossos parceiros."
   plans: [
     {
-      id: 'plan-basic',
-      name: 'Plano Básico',
-      description: 'Estruturado para pequenos estabelecimentos comerciais que necessitam de emissão ágil e frente de caixa.',
-      price: 'Consulte valores',
-      period: 'Comercialização externa',
+      id: 'plan-unico',
+      name: 'Plano Sistema Completo Adipron',
+      description: 'Solução completa e definitiva para o seu estabelecimento. Módulo completo do sistema com suporte técnico especializado incluso.',
+      price: 'R$ 305,00 / mês',
+      period: 'Instalação do sistema: R$ 600,00 (taxa única)',
       benefits: [
-        'Módulo de Frente de Caixa (PDV)',
-        'Emissão de comprovantes e documentos fiscais',
-        'Controle básico de estoque',
-        'Suporte técnico especializado'
+        'Módulo do sistema completo (PDV, Estoque, Vendas e Gestão)',
+        'Cobrança por loja (NÃO cobramos por computador)',
+        'Suporte técnico do sistema incluso na mensalidade',
+        'Atendimento de segunda a sexta das 8h às 18h',
+        'Atendimento no sábado das 8h às 12h',
+        'Sem funcionamento aos domingos e feriados',
+        'Atualizações e conformidade fiscal contínuas'
       ],
-      contactButtonText: 'Consultar com a Representante',
-      highlighted: false
-    },
-    {
-      id: 'plan-pro',
-      name: 'Plano Completo',
-      description: 'Solução integrada para empresas que demandam controle operacional aprofundado e retaguarda completa.',
-      price: 'Consulte valores',
-      period: 'Comercialização externa',
-      benefits: [
-        'Todos os recursos do Plano Básico',
-        'Módulo financeiro e contas a pagar/receber',
-        'Relatórios gerenciais e fluxo operacional',
-        'Múltiplos terminais integrados',
-        'Suporte prioritário e atualizações'
-      ],
-      contactButtonText: 'Consultar com a Representante',
+      contactButtonText: 'Contratar com a Adipron',
       highlighted: true
     }
   ],
   supportLinks: [
     {
       id: 'sup-1',
-      title: 'Ferramenta de Suporte Remoto',
-      description: 'Utilize esta ferramenta quando solicitado pelo suporte técnico da Adipron Informática para atendimento assistido.',
-      url: 'https://anydesk.com/pt/downloads',
+      title: 'BAIXAR SUPORTE ANYDESK',
+      description: 'Programa oficial AnyDesk para conexão remota e assistência técnica direta com os especialistas da Adipron Informática.',
+      url: '/api/support/download/AnyDesk.exe',
       category: 'remoto',
-      badge: 'Suporte Assistido',
-      buttonText: 'Acessar Ferramenta',
-      isExternal: true
+      badge: 'Suporte Remoto',
+      buttonText: 'BAIXAR',
+      isExternal: false,
+      filename: 'AnyDesk.exe',
+      size: '8.2 MB',
+      version: '8.1.1',
+      fileType: 'EXE',
+      directDownload: true
     },
     {
       id: 'sup-2',
-      title: 'Manual de Instalação e Boas Práticas',
-      description: 'Orientações técnicas para configuração dos equipamentos e preparação de ambiente operacional.',
-      url: '#downloads',
-      category: 'manual',
-      badge: 'Documentação',
-      buttonText: 'Ver Documentos',
-      isExternal: false
-    },
-    {
-      id: 'sup-3',
-      title: 'Configurador de Impressoras e Periféricos',
-      description: 'Utilitário de alinhamento e teste de comunicação para impressoras térmicas e leitores de código.',
-      url: '#downloads',
-      category: 'ferramenta',
-      badge: 'Utilitário',
-      buttonText: 'Ver Utilitários',
-      isExternal: false
+      title: 'BAIXAR SUPOERT REMOTO TEAM',
+      description: 'Programa oficial TeamViewer QuickSupport para acesso remoto rápido e seguro sem necessidade de instalação complexa.',
+      url: '/api/support/download/TeamViewerQS.exe',
+      category: 'remoto',
+      badge: 'Suporte Remoto',
+      buttonText: 'BAIXAR',
+      isExternal: false,
+      filename: 'TeamViewerQS.exe',
+      size: '33.2 MB',
+      version: '15.58',
+      fileType: 'EXE',
+      directDownload: true
     }
   ],
   messages: [],
@@ -237,6 +224,18 @@ let memoryDb: AppDatabase = (() => {
           }
         }
       }
+
+      // Ensure support links contain the new AnyDesk and TeamViewer options
+      if (!Array.isArray(merged.supportLinks) || merged.supportLinks.length === 0) {
+        merged.supportLinks = [...defaultData.supportLinks];
+      } else {
+        const hasAnydesk = merged.supportLinks.some(s => s.title.toLowerCase().includes('anydesk'));
+        const hasTeam = merged.supportLinks.some(s => s.title.toLowerCase().includes('team'));
+        if (!hasAnydesk || !hasTeam) {
+          merged.supportLinks = [...defaultData.supportLinks];
+        }
+      }
+
       return merged;
     }
   } catch (err) {

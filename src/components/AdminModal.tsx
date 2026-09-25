@@ -6,7 +6,6 @@ import {
   Plus,
   Trash2,
   FileCode,
-  Handshake,
   CreditCard,
   LifeBuoy,
   MessageSquare,
@@ -20,7 +19,6 @@ import { api } from '../services/api.ts';
 import type {
   DownloadItem,
   DownloadCategory,
-  Partner,
   Plan,
   SupportLink,
   ContactMessage,
@@ -43,11 +41,10 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   const [isAdminAuth, setIsAdminAuth] = useState(false);
   const [pin, setPin] = useState('');
   const [authError, setAuthError] = useState('');
-  const [activeTab, setActiveTab] = useState<'downloads' | 'partners' | 'plans' | 'support' | 'messages' | 'content'>('downloads');
+  const [activeTab, setActiveTab] = useState<'downloads' | 'plans' | 'support' | 'messages' | 'content'>('downloads');
 
   // Admin Data states
   const [downloads, setDownloads] = useState<DownloadItem[]>([]);
-  const [partners, setPartners] = useState<Partner[]>([]);
   const [plans, setPlans] = useState<Plan[]>([]);
   const [supportLinks, setSupportLinks] = useState<SupportLink[]>([]);
   const [messages, setMessages] = useState<ContactMessage[]>([]);
@@ -62,13 +59,6 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     size: '15.0 MB',
     version: '1.0.0',
     filename: ''
-  });
-
-  const [newPartner, setNewPartner] = useState({
-    name: '',
-    description: '',
-    websiteUrl: '',
-    logoUrl: ''
   });
 
   const [newPlan, setNewPlan] = useState({
@@ -113,16 +103,14 @@ export const AdminModal: React.FC<AdminModalProps> = ({
   };
 
   const loadAllAdminData = async () => {
-    const [dlRes, partList, planList, supList, msgList] = await Promise.all([
+    const [dlRes, planList, supList, msgList] = await Promise.all([
       api.getDownloads(),
-      api.getPartners(),
       api.getPlans(),
       api.getSupportLinks(),
       api.adminGetMessages()
     ]);
 
     if (dlRes.data) setDownloads(dlRes.data);
-    setPartners(partList);
     setPlans(planList);
     setSupportLinks(supList);
     setMessages(msgList);
@@ -179,28 +167,6 @@ export const AdminModal: React.FC<AdminModalProps> = ({
     const ok = await api.adminDeleteDownload(id);
     if (ok) {
       showStatus('success', 'Arquivo excluído.');
-      loadAllAdminData();
-      onDataChanged();
-    }
-  };
-
-  const handleAddPartner = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newPartner.name || !newPartner.description) return;
-    const ok = await api.adminAddPartner(newPartner);
-    if (ok) {
-      showStatus('success', 'Parceiro cadastrado.');
-      setNewPartner({ name: '', description: '', websiteUrl: '', logoUrl: '' });
-      loadAllAdminData();
-      onDataChanged();
-    }
-  };
-
-  const handleDeletePartner = async (id: string) => {
-    if (!window.confirm('Confirma a exclusão deste parceiro?')) return;
-    const ok = await api.adminDeletePartner(id);
-    if (ok) {
-      showStatus('success', 'Parceiro excluído.');
       loadAllAdminData();
       onDataChanged();
     }
@@ -416,18 +382,6 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 </button>
 
                 <button
-                  onClick={() => setActiveTab('partners')}
-                  className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 ${
-                    activeTab === 'partners'
-                      ? 'bg-sky-50 text-sky-800 border border-sky-200'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-                  }`}
-                >
-                  <Handshake className="w-3.5 h-3.5" />
-                  <span>Parceiros ({partners.length})</span>
-                </button>
-
-                <button
                   onClick={() => setActiveTab('plans')}
                   className={`px-3 py-2 rounded-lg transition-colors flex items-center gap-1.5 ${
                     activeTab === 'plans'
@@ -628,93 +582,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 </div>
               )}
 
-              {/* TAB 2: PARTNERS MANAGEMENT */}
-              {activeTab === 'partners' && (
-                <div className="space-y-6">
-                  <form onSubmit={handleAddPartner} className="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-800 flex items-center gap-2">
-                      <Plus className="w-4 h-4 text-sky-700" />
-                      <span>Cadastrar Novo Parceiro</span>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-[11px] font-semibold text-slate-600 mb-1">Nome do Parceiro *</label>
-                        <input
-                          type="text"
-                          required
-                          value={newPartner.name}
-                          onChange={e => setNewPartner({ ...newPartner, name: e.target.value })}
-                          placeholder="Ex: Empresa de Software Parceira"
-                          className="w-full px-3 py-2 bg-white border border-slate-300 rounded text-xs text-slate-900"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-[11px] font-semibold text-slate-600 mb-1">URL do Site</label>
-                        <input
-                          type="url"
-                          value={newPartner.websiteUrl}
-                          onChange={e => setNewPartner({ ...newPartner, websiteUrl: e.target.value })}
-                          placeholder="https://exemplo.com.br"
-                          className="w-full px-3 py-2 bg-white border border-slate-300 rounded text-xs text-slate-900"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-[11px] font-semibold text-slate-600 mb-1">Descrição da Parceria *</label>
-                      <input
-                        type="text"
-                        required
-                        value={newPartner.description}
-                        onChange={e => setNewPartner({ ...newPartner, description: e.target.value })}
-                        placeholder="Ex: Fornecedora de soluções tecnológicas integradas."
-                        className="w-full px-3 py-2 bg-white border border-slate-300 rounded text-xs text-slate-900"
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="px-4 py-2 bg-sky-700 hover:bg-sky-800 text-white rounded text-xs font-semibold transition-colors"
-                    >
-                      Cadastrar Parceiro
-                    </button>
-                  </form>
-
-                  <div className="space-y-3">
-                    <div className="text-xs font-bold uppercase tracking-wider text-slate-700">
-                      Parceiros Atuais ({partners.length})
-                    </div>
-                    {partners.length === 0 ? (
-                      <p className="text-xs text-slate-500 italic">
-                        Nenhum parceiro cadastrado. Na página inicial será exibido: "Em breve apresentaremos nossos parceiros."
-                      </p>
-                    ) : (
-                      partners.map(p => (
-                        <div
-                          key={p.id}
-                          className="p-3.5 bg-white border border-slate-200 rounded-lg flex items-center justify-between gap-4 text-xs"
-                        >
-                          <div>
-                            <span className="font-bold text-slate-900">{p.name}</span>
-                            {p.websiteUrl && <span className="text-slate-400 ml-2">({p.websiteUrl})</span>}
-                            <div className="text-slate-500 text-[11px] mt-0.5">{p.description}</div>
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => handleDeletePartner(p.id)}
-                            className="p-1.5 text-rose-600 hover:bg-rose-50 rounded transition-colors shrink-0"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                </div>
-              )}
-
-              {/* TAB 3: PLANS MANAGEMENT */}
+              {/* TAB 2: PLANS MANAGEMENT */}
               {activeTab === 'plans' && (
                 <div className="space-y-6">
                   <form onSubmit={handleAddPlan} className="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
@@ -1021,26 +889,6 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                         className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-xs text-slate-900"
                       />
                     </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Quem somos - Parágrafo 1</label>
-                    <textarea
-                      rows={3}
-                      value={contentForm.aboutText1 || ''}
-                      onChange={e => setContentForm({ ...contentForm, aboutText1: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-xs text-slate-900"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">Quem somos - Parágrafo 2</label>
-                    <textarea
-                      rows={3}
-                      value={contentForm.aboutText2 || ''}
-                      onChange={e => setContentForm({ ...contentForm, aboutText2: e.target.value })}
-                      className="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded text-xs text-slate-900"
-                    />
                   </div>
 
                   <button
